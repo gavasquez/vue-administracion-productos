@@ -108,7 +108,7 @@
 import { geProductsActions } from '@/modules/products/actions';
 import ProductList from '../../products/components/ProductList.vue';
 import { useQuery, useQueryClient } from '@tanstack/vue-query';
-import ButtonPagination from '@/modules/common/ButtonPagination.vue';
+import ButtonPagination from '@/modules/common/components/ButtonPagination.vue';
 import { useRoute } from 'vue-router';
 import { ref, watch, watchEffect } from 'vue';
 
