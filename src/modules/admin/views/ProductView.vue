@@ -55,7 +55,6 @@
 
       <div class="mb-4">
         <label for="sizes" class="form-label">Tallas</label>
-        <input type="text" id="price" class="form-control" />
         <div class="flex">
           <button
             v-for="size of allSizes"
@@ -84,12 +83,28 @@
         <div v-for="image of images" :key="image.value" class="flex-shrink-0">
           <img class="w-[250px] h-[250px] rounded" :src="image.value" :alt="title" />
         </div>
+
+        <div v-for="imageFile of imageFields" :key="imageFile.name" class="flex-shrink-0">
+          <img
+            class="w-[250px] h-[250px] rounded"
+            :src="temporalImageUrl(imageFile)"
+            :alt="title"
+          />
+        </div>
       </div>
+
       <!-- Upload image -->
       <div class="col-span-2 my-2">
         <label for="image" class="form-label">Subir imagen</label>
 
-        <input multiple type="file" id="image" class="form-control" />
+        <input
+          @change="onFileChange"
+          multiple
+          type="file"
+          id="image"
+          class="form-control"
+          accept="image/*"
+        />
       </div>
 
       <div class="mb-4">
@@ -106,8 +121,9 @@
       <!-- Botón para guardar -->
       <div class="my-4 text-right">
         <button
+          :disabled="isPending"
           type="submit"
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          class="disabled:bg-gray-400 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         >
           Guardar
         </button>
